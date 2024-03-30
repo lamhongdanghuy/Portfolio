@@ -4,33 +4,42 @@
 
 @font-face {
   font-family: 'Frensya';
-  src:url('Frensya.ttf.woff') format('woff'),
-      url('Frensya.ttf.svg#Frensya') format('svg'),
-      url('Frensya.ttf.eot'),
-      url('Frensya.ttf.eot?#iefix') format('embedded-opentype'); 
+  src:url('/font/Frensya.ttf.woff') format('woff'),
+      url('../public/font/Frensya.ttf.svg#Frensya') format('svg'),
+      url('../public/font/Frensya.ttf.eot'),
+      url('../public/font/Frensya.ttf.eot?#iefix') format('embedded-opentype'); 
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Ohyou';
-  src:url('../public/font/Ohyou.ttf.woff') format('woff'),
-      url('Ohyou.ttf.svg#Ohyou') format('svg'),
-      url('Ohyou.ttf.eot'),
-      url('Ohyou.ttf.eot?#iefix') format('embedded-opentype'); 
+  src:url('/font/Ohyou.ttf.woff') format('woff'),
+      url('../public/font/Ohyou.ttf.svg#Ohyou') format('svg'),
+      url('../public/font/Ohyou.ttf.eot'),
+      url('../public/font/Ohyou.ttf.eot?#iefix') format('embedded-opentype'); 
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'SMITUK';
-  src:url('../public/font/SMITUK.ttf.woff') format('woff'),
-      url('SMITUK.ttf.svg#SMITUK') format('svg'),
-      url('SMITUK.ttf.eot'),
-      url('SMITUK.ttf.eot?#iefix') format('embedded-opentype'); 
+  src:url('/font/SMITUK.ttf.woff') format('woff'),
+      url('../public/font/SMITUK.ttf.svg#SMITUK') format('svg'),
+      url('../public/font/SMITUK.ttf.eot'),
+      url('../public/font/SMITUK.ttf.eot?#iefix') format('embedded-opentype'); 
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'Mountain';
+  src:url('../public/font/Mountain.otf') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 
 /* h1 { 
  font-family: 'SMITUK';
@@ -42,4 +51,37 @@ nav {
 
 span{
   font-family: 'Ohyou';
+}
+
+/* This will apply for iPhone-sized screens and similar */
+@media (max-width: 768px) {
+  nav {
+    padding: 20px; /* Padding for the mobile nav */
+  }
+  .nav-link {
+    margin-bottom: 15px; /* Spacing between nav links */
+  }
+}
+
+/* Styles for screens larger than 768px, typical for tablets and desktops */
+@media (min-width: 769px) {
+  .header {
+    /* Apply your original styles for larger screens */
+  }
+  nav {
+    /* Reset or apply specific styles for the larger screen nav */
+  }
+  .nav-link {
+    /* Reset the spacing for nav links to use your original styling */
+  }
+}
+
+/* App.css */
+.header-container {
+  height: 20vh; /* 20% of the viewport height */
+}
+
+.body-container {
+  height: 80vh; /* 80% of the viewport height */
+  overflow-y: auto; /* Add scroll if content overflows */
 }
