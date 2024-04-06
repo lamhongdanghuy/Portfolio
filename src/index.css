@@ -3,54 +3,52 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Frensya';
-  src:url('/font/Frensya.ttf.woff') format('woff'),
-      url('../public/font/Frensya.ttf.svg#Frensya') format('svg'),
-      url('../public/font/Frensya.ttf.eot'),
-      url('../public/font/Frensya.ttf.eot?#iefix') format('embedded-opentype'); 
+  font-family: "Frensya";
+  src: url("/font/Frensya.ttf.woff") format("woff"),
+    url("../public/font/Frensya.ttf.svg#Frensya") format("svg"),
+    url("../public/font/Frensya.ttf.eot"),
+    url("../public/font/Frensya.ttf.eot?#iefix") format("embedded-opentype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Ohyou';
-  src:url('/font/Ohyou.ttf.woff') format('woff'),
-      url('../public/font/Ohyou.ttf.svg#Ohyou') format('svg'),
-      url('../public/font/Ohyou.ttf.eot'),
-      url('../public/font/Ohyou.ttf.eot?#iefix') format('embedded-opentype'); 
+  font-family: "Ohyou";
+  src: url("/font/Ohyou.ttf.woff") format("woff"),
+    url("../public/font/Ohyou.ttf.svg#Ohyou") format("svg"),
+    url("../public/font/Ohyou.ttf.eot"),
+    url("../public/font/Ohyou.ttf.eot?#iefix") format("embedded-opentype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'SMITUK';
-  src:url('/font/SMITUK.ttf.woff') format('woff'),
-      url('../public/font/SMITUK.ttf.svg#SMITUK') format('svg'),
-      url('../public/font/SMITUK.ttf.eot'),
-      url('../public/font/SMITUK.ttf.eot?#iefix') format('embedded-opentype'); 
+  font-family: "SMITUK";
+  src: url("/font/SMITUK.ttf.woff") format("woff"),
+    url("../public/font/SMITUK.ttf.svg#SMITUK") format("svg"),
+    url("../public/font/SMITUK.ttf.eot"),
+    url("../public/font/SMITUK.ttf.eot?#iefix") format("embedded-opentype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Mountain';
-  src:url('../public/font/Mountain.otf') format('woff');
+  font-family: "Mountain";
+  src: url("../public/font/Mountain.otf") format("woff");
   font-weight: normal;
   font-style: normal;
 }
-
-
 
 /* h1 { 
  font-family: 'SMITUK';
 }   */
 
 nav {
-  font-family: 'Frensya';
+  font-family: "Frensya";
 }
 
-span{
-  font-family: 'Ohyou';
+span {
+  font-family: "Ohyou";
 }
 
 /* This will apply for iPhone-sized screens and similar */
@@ -76,12 +74,54 @@ span{
   }
 }
 
-/* App.css */
-.header-container {
-  height: 20vh; /* 20% of the viewport height */
+/* Assuming you have a styles.css file where you write your custom Tailwind CSS */
+@keyframes rollInLeft {
+  0% {
+    transform: translateX(-100vw) rotate(-360deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0) rotate(0deg);
+    opacity: 1;
+  }
 }
 
-.body-container {
-  height: 80vh; /* 80% of the viewport height */
-  overflow-y: auto; /* Add scroll if content overflows */
+.nowrap {
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+}
+
+.roll-in-left {
+  @apply w-1/4 rounded-full border-2 border-gray-300 shadow-lg m-4;
+  animation: rollInLeft 1s ease-out forwards;
+}
+/* This ensures that the spacer div is the same width as the image */
+@media (min-width: 768px) {
+  /* Adjust the min-width according to your Tailwind config */
+  .landing-page-spacer::before {
+    content: "";
+    display: block;
+    flex-grow: 1;
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes blink-caret {
+  50% {
+    border-color: transparent;
+  }
+}
+.typing-animation {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: 0.15em solid orange; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: 0.15em; /* Adjust as needed */
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
 }
