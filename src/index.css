@@ -125,3 +125,81 @@ span {
   letter-spacing: 0.15em; /* Adjust as needed */
   animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
 }
+
+@keyframes shadowRgbEffect {
+  0% {
+    filter: drop-shadow(0 0 6px #ff0000);
+  }
+  16% {
+    filter: drop-shadow(0 0 6px #ff7f00);
+  }
+  33% {
+    filter: drop-shadow(0 0 6px #ffff00);
+  }
+  50% {
+    filter: drop-shadow(0 0 6px #00ff00);
+  }
+  66% {
+    filter: drop-shadow(0 0 6px #0000ff);
+  }
+  83% {
+    filter: drop-shadow(0 0 6px #4b0082);
+  }
+  100% {
+    filter: drop-shadow(0 0 6px #9400d3);
+  }
+}
+
+.animate-shadow-rgb {
+  animation: shadowRgbEffect 3s infinite linear;
+}
+
+.coding-image-container {
+  /* Add any specific styles for the coding image container */
+}
+
+.stats-container div {
+  /* Additional styles for the stats cards */
+  transition: transform 0.3s ease;
+}
+
+.stats-container div:hover {
+  transform: scale(1.05);
+}
+
+@keyframes blink-cursor {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: white;
+  }
+}
+
+.command-line-container {
+  /* Add any specific styles for the command line container */
+}
+
+.command-line-container::after {
+  content: "|";
+  font-weight: bold;
+  animation: blink-cursor 1s step-end infinite;
+}
+.stats-container div {
+  background: white; /* Use a flat background instead of a border */
+  padding: 2rem; /* Even padding for a cleaner look */
+  text-align: center; /* Center the text for a balanced appearance */
+}
+
+.command-line-container {
+  overflow-x: auto; /* Ensures content is scrollable on smaller screens */
+}
+
+@media (max-width: 640px) {
+  .command-line-container {
+    padding: 2rem 1rem; /* Adjust padding on smaller screens for a cleaner look */
+  }
+}
+
+/* Optional: you might want to include a small script for a typing effect in the command-line section */

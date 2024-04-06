@@ -22,16 +22,11 @@ function LandingPage() {
       </div>
       <div
         id="About"
-        className="About bg-gray-100 p-10 rounded-lg shadow-lg flex"
+        className="About bg-blue-50 p-10 rounded-lg shadow-lg flex flex-col md:flex-row"
       >
-        <div>
-          <div className="flex p-1">
-            <img
-              className="w-2/6"
-              src="../public/coding.gif"
-              alt="Coding Gif"
-            />
-            <div className="text-lg leading-relaxed text-gray-800 w-4/6 ml-4">
+        <div className="flex-grow">
+          <div className="flex p-1 items-center">
+            <div className="text-lg leading-relaxed text-gray-800 ml-4">
               <p className="mb-4">
                 My name is Huy Lam, a recent graduate with a Bachelor of Science
                 in Computer Science from DePaul University, specializing in
@@ -61,7 +56,7 @@ function LandingPage() {
               </p>
             </div>
           </div>
-          <div className="flex space-x-4">
+          <div className="stats-container grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
             <div className="border border-gray-300 p-4 rounded-lg">
               <p className="mb-2">Project Completed:</p>
               <p className="text-xl font-bold">3</p>

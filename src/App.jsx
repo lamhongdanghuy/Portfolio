@@ -3,50 +3,57 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./index.css";
 import Header from "./Header";
 import LandingPage from "./LandingPage";
-import { MenuIcon } from "@heroicons/react/solid"; // Import the burger icon
+import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/solid";
 
 function App() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const handleScroll = () => {
-    const offset = window.scrollY;
-    if (offset > 200) {
-      // Adjust as needed
-      setIsScrolled(true);
-    } else {
-      setIsScrolled(false);
-      setIsMenuOpen(false); // Close the menu when scrolling back up
-    }
-  };
+  const [isAtTop, setIsAtTop] = useState(true); // Track if the user is at the top of the page
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // Control the manual toggle of the header
 
   useEffect(() => {
+    const handleScroll = () => {
+      setIsAtTop(window.scrollY < 100); // User is considered at the top if scrolled less than 100px
+    };
+
+    // Add scroll listener
     window.addEventListener("scroll", handleScroll);
+
     return () => {
+      // Clean up
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   return (
     <Router>
-      {isScrolled ? (
-        <div className="fixed top-0 right-0 z-50">
-          <MenuIcon
-            className="h-6 w-6"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+      <div
+        className={`fixed top-0 z-40 w-full transition-transform duration-500 ease-in-out ${
+          isAtTop || isMenuOpen ? "translate-y-0" : "-translate-y-full"
+        }`}
+      >
+        <Header />
+      </div>
+
+      {/* Show down arrow when not at top and menu is not manually opened */}
+      {!isAtTop && !isMenuOpen && (
+        <div className="fixed top-0 right-0 z-50 p-4">
+          <ChevronDownIcon
+            className="h-10 w-10"
+            onClick={() => setIsMenuOpen(true)}
           />
         </div>
-      ) : (
-        <div className="header-container sticky top-0 z-50">
-          <Header />
-        </div>
       )}
+
+      {/* Show up arrow when menu is manually opened */}
       {isMenuOpen && (
-        <div className="header-container fixed top-0 z-50">
-          <Header />
+        <div className="fixed top-0 right-0 z-50 p-4">
+          <ChevronUpIcon
+            className="h-10 w-10"
+            onClick={() => setIsMenuOpen(false)}
+          />
         </div>
       )}
-      <div className="body-container">
+
+      <div>
         <Routes>
           <Route path="/" element={<LandingPage />} />
         </Routes>
