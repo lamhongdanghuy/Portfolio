@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import emailjs from "emailjs-com";
 import { LinkIcon } from "@heroicons/react/solid";
 
@@ -8,6 +8,42 @@ function LandingPage({ darkMode }) {
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
+
+  // const aboutRef = useRef(null);
+
+  // useEffect(() => {
+  //   const observer = new IntersectionObserver(
+  //     (entries) => {
+  //       entries.forEach((entry) => {
+  //         // Check if the observed entry is intersecting
+  //         if (entry.isIntersecting) {
+  //           // Add animation class if the element is in the viewport
+  //           entry.target.classList.add("animate-fadein");
+  //         } else {
+  //           // Optional: Remove animation class if you want the animation to trigger every time the section comes into view
+  //           entry.target.classList.remove("animate-fadein");
+  //         }
+  //       });
+  //     },
+  //     {
+  //       // Adjust the root margin and threshold according to your needs
+  //       rootMargin: "0px",
+  //       threshold: 0.1, // Trigger when 10% of the element is in view
+  //     }
+  //   );
+
+  //   // Observing the about section
+  //   if (aboutRef.current) {
+  //     observer.observe(aboutRef.current);
+  //   }
+
+  //   // Cleanup function to unobserve the element
+  //   return () => {
+  //     if (aboutRef.current) {
+  //       observer.unobserve(aboutRef.current);
+  //     }
+  //   };
+  // }, []);
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -34,6 +70,17 @@ function LandingPage({ darkMode }) {
         }
       );
   };
+
+  window.addEventListener("scroll", function () {
+    var elementPosition = document
+      .getElementById("animatedSection")
+      .getBoundingClientRect().top;
+    var screenPosition = window.innerHeight / 1.3;
+
+    if (elementPosition < screenPosition) {
+      document.getElementById("animatedSection").classList.add("About");
+    }
+  });
   return (
     <>
       <div id="Home">
@@ -64,14 +111,18 @@ function LandingPage({ darkMode }) {
           <img src="/sel.jpg" className="roll-in-left" alt="Huy Lam" />
         </div>
       </div>
-      <div id="About">
+      <div
+        id="About"
+        // ref={aboutRef}
+        className="rounded-lg shadow-lg bg-blue-100 p-8 m-4 transition-colors duration-500 hover:bg-blue-200 animate-fadein"
+      >
         <div>
-          <h1 className="standout text-center text-4xl font-bold text-gray-800 my-8">
+          <h1 className="standout text-center text-4xl font-bold text-gray-800 my-8 animate-slidein">
             About Me
           </h1>
         </div>
-        <div className="About p-10 rounded-lg shadow-lg flex flex-col md:flex-row">
-          <div className="flex-grow">
+        <div className="About p-10 flex flex-col md:flex-row">
+          <div className="flex-grow animate-slidein">
             <div className="flex p-1 items-center">
               <div
                 className={`text-lg leading-relaxed ml-4 ${
@@ -109,7 +160,7 @@ function LandingPage({ darkMode }) {
             </div>
             <div className="stats-container grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
               <div
-                className={`border border-gray-300 p-4 rounded-lg ${
+                className={`border border-gray-300 p-4 rounded-lg animate-popin ${
                   darkMode ? "bg-white text-gray-300" : "bg-gray-700 text-white"
                 }`}
               >
@@ -139,10 +190,10 @@ function LandingPage({ darkMode }) {
               </div>
             </div>
           </div>
-          <div>
+          <div className="animate-slidein">
             <pre
               data-prefix="$"
-              className="mockup-code rounded-t bg-black text-white p-7 w-auto font-mono ml-10"
+              className="mockup-code rounded-t bg-black text-white p-7 w-auto font-mono ml-10 "
             >
               <code className="typing-animation">./aboutMe.out</code>
             </pre>
@@ -177,15 +228,14 @@ function LandingPage({ darkMode }) {
           </h1>
         </div>
         <div className="flex space-between space-x-20 text-center justify-center">
-          <div className="justify-center max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col items-center">
+          <div className="justify-center max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col items-center overflow-hidden">
             <img
-              classname="justify-center rounded-t-lg"
+              className="justify-center rounded-t-lg"
               src="/depaul.png"
-              alt=""
+              alt="DePaul University"
             />
-
-            <div class="p-5">
-              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <div className="p-5">
+              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 DePaul CyberSecurity Clinic
               </h5>
               <p className="font-normal text-gray-700 dark:text-gray-400">
@@ -195,6 +245,32 @@ function LandingPage({ darkMode }) {
                 policies and practices while students in turn gain real-world
                 experience that contributes to a cyber security workforce.
               </p>
+              <div>
+                <h2 className="font-bold">Technology used:</h2>
+                <ul className="flex flex-wrap gap-1 justify-center items-center">
+                  <li className="rounded-full border border-sky-100 bg-sky-50 px-2 py-0.5 dark:text-sky-300 dark:border-sky-500/15 dark:bg-sky-500/10">
+                    React
+                  </li>
+                  <li className="rounded-full border border-sky-100 bg-sky-50 px-2 py-0.5 dark:text-sky-300 dark:border-sky-500/15 dark:bg-sky-500/10">
+                    Linux
+                  </li>
+                  <li className="rounded-full border border-sky-100 bg-sky-50 px-2 py-0.5 dark:text-sky-300 dark:border-sky-500/15 dark:bg-sky-500/10">
+                    Apache
+                  </li>
+                  <li className="rounded-full border border-sky-100 bg-sky-50 px-2 py-0.5 dark:text-sky-300 dark:border-sky-500/15 dark:bg-sky-500/10">
+                    MariaDB
+                  </li>
+                  <li className="rounded-full border border-sky-100 bg-sky-50 px-2 py-0.5 dark:text-sky-300 dark:border-sky-500/15 dark:bg-sky-500/10">
+                    Python
+                  </li>
+                  <li className="rounded-full border border-sky-100 bg-sky-50 px-2 py-0.5 dark:text-sky-300 dark:border-sky-500/15 dark:bg-sky-500/10">
+                    Jira
+                  </li>
+                  <li className="rounded-full border border-sky-100 bg-sky-50 px-2 py-0.5 dark:text-sky-300 dark:border-sky-500/15 dark:bg-sky-500/10">
+                    AWS
+                  </li>
+                </ul>
+              </div>
             </div>
             <div className="flex">
               <a
@@ -219,18 +295,17 @@ function LandingPage({ darkMode }) {
           </div>
 
           <div className="flex space-between space-x-20 text-center justify-center">
-            <div className="justify-center max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col items-center">
+            <div className="justify-center max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col items-center overflow-hidden">
               <img
-                classname="justify-center rounded-t-lg"
+                className="justify-center rounded-t-lg"
                 src="/vnfood.png"
-                alt=""
+                alt="Vietnam Food"
               />
-
-              <div class="p-5">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              <div className="p-5">
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                   Co Chin
                 </h5>
-                <p class=" font-normal text-gray-700 dark:text-gray-400">
+                <p className="font-normal text-gray-700 dark:text-gray-400">
                   Co Chin is a sleek, ReactJS-based website offering Vietnamese
                   cuisine. Its layout is clean and inviting, with high-quality
                   images and an easy navigation system. The site features an
@@ -238,6 +313,17 @@ function LandingPage({ darkMode }) {
                   process, targeting food lovers seeking Vietnamese flavors
                   online.
                 </p>
+                <div>
+                  <h2 className="font-bold">Technology used:</h2>
+                  <ul className="flex flex-wrap gap-1 justify-center items-center">
+                    <li className="rounded-full border border-sky-100 bg-sky-50 px-2 py-0.5 dark:text-sky-300 dark:border-sky-500/15 dark:bg-sky-500/10">
+                      React
+                    </li>
+                    <li className="rounded-full border border-sky-100 bg-sky-50 px-2 py-0.5 dark:text-sky-300 dark:border-sky-500/15 dark:bg-sky-500/10">
+                      graphql
+                    </li>
+                  </ul>
+                </div>
               </div>
               <div className="flex">
                 <a
@@ -270,11 +356,11 @@ function LandingPage({ darkMode }) {
                 alt=""
               />
 
-              <div class="p-5">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              <div className="p-5">
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                   Clone Amazon
                 </h5>
-                <p class=" font-normal text-gray-700 dark:text-gray-400">
+                <p className=" font-normal text-gray-700 dark:text-gray-400">
                   Clone Amazon is a ReactJS-based front-end replica of Amazon,
                   featuring a simplified interface with essential shopping
                   functionalities like product listings and search. It's perfect
@@ -319,11 +405,11 @@ function LandingPage({ darkMode }) {
                 alt=""
               />
 
-              <div class="p-5">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              <div className="p-5">
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                   Random Food Near You
                 </h5>
-                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                   A desktop app that fetches your location, queries your cuisine
                   preference, and utilizes Google Maps API to suggest random
                   eateries nearby or offers a completely random selection for
@@ -336,15 +422,15 @@ function LandingPage({ darkMode }) {
       </div>
       <div id="Contact">
         <section>
-          <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
+          <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
             <h2
-              class={`mb-4 text-4xl tracking-tight font-extrabold text-center ${
+              className={`mb-4 text-4xl tracking-tight font-extrabold text-center ${
                 darkMode ? "text-gray-900" : "text-green-500"
               }`}
             >
               Contact Me Now!
             </h2>
-            <p class="mb-8 lg:mb-16 font-light text-center text-blue-400 dark:text-gray-400 sm:text-xl">
+            <p className="mb-8 lg:mb-16 font-light text-center text-blue-400 dark:text-gray-400 sm:text-xl">
               I'm always open to discussing new projects, creative ideas, or
               opportunities to be part of your visions. Whether you have a
               question or just want to say hi, I'll try my best to get back to
@@ -354,7 +440,7 @@ function LandingPage({ darkMode }) {
               <div>
                 <label
                   for="email"
-                  class="block mb-2 text-sm font-medium text-blue-400 dark:text-gray-300"
+                  className="block mb-2 text-sm font-medium text-blue-400 dark:text-gray-300"
                 >
                   Your email
                 </label>
@@ -363,7 +449,7 @@ function LandingPage({ darkMode }) {
                   id="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
+                  className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
                   placeholder="example@gmail.com"
                   required
                 />
@@ -371,7 +457,7 @@ function LandingPage({ darkMode }) {
               <div>
                 <label
                   for="subject"
-                  class="block mb-2 text-sm font-medium text-blue-400 dark:text-gray-300"
+                  className="block mb-2 text-sm font-medium text-blue-400 dark:text-gray-300"
                 >
                   Subject
                 </label>
@@ -380,15 +466,15 @@ function LandingPage({ darkMode }) {
                   id="subject"
                   value={subject}
                   onChange={(e) => setSubject(e.target.value)}
-                  class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
+                  className="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
                   placeholder="Let us know how we can help you"
                   required
                 />
               </div>
-              <div class="sm:col-span-2">
+              <div className="sm:col-span-2">
                 <label
                   for="message"
-                  class="block mb-2 text-sm font-medium text-blue-400 dark:text-gray-400"
+                  className="block mb-2 text-sm font-medium text-blue-400 dark:text-gray-400"
                 >
                   Your message
                 </label>
@@ -397,13 +483,13 @@ function LandingPage({ darkMode }) {
                   rows="6"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                  className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   placeholder="Leave a comment..."
                 ></textarea>
               </div>
               <button
                 type="submit"
-                class="text-green-500 border border-gray-300 py-3 px-5 text-sm font-medium text-center rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                className="text-green-500 border border-gray-300 py-3 px-5 text-sm font-medium text-center rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
               >
                 Send message
               </button>
