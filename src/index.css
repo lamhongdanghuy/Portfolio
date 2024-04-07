@@ -122,6 +122,11 @@ span {
   }
 }
 
+.standout {
+  font-family: "Frensya";
+  color: var(--primary-text-color);
+}
+
 .nowrap {
   white-space: nowrap;
 

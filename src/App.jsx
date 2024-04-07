@@ -46,17 +46,17 @@ function App() {
           />
         </div>
         {!isAtTop && !isMenuOpen && (
-          <div className="fixed top-0 right-0 z-50 p-4">
+          <div className="fixed top-0 right-0 z-50 p-4 animate-shadow-rgb">
             <ChevronDownIcon
-              className="h-10 w-10"
+              className="h-12 w-12"
               onClick={() => setIsMenuOpen(true)}
             />
           </div>
         )}
         {isMenuOpen && (
-          <div className="fixed top-0 right-0 z-50 p-4">
+          <div className="fixed top-0 right-0 z-50 p-4 animate-shadow-rgb">
             <ChevronUpIcon
-              className="h-10 w-10"
+              className="h-12 w-12"
               onClick={() => setIsMenuOpen(false)}
             />
           </div>

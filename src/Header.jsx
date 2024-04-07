@@ -129,15 +129,20 @@ function Header({ toggleDarkMode, darkMode, isMenuOpen, setIsMenuOpen }) {
               About
             </NavLink>{" "}
             <NavLink
-              to="/projects"
               className={`hover:text-blue-500 text-xl my-4 md:my-0 md:mx-2 ${
                 darkMode ? "text-gray-300" : "text-black-500"
               }`}
+              onClick={(e) => {
+                e.preventDefault(); // Prevent the default anchor link behavior
+                const aboutSection = document.getElementById("Project");
+                if (aboutSection) {
+                  aboutSection.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
             >
               Projects
             </NavLink>
             <NavLink
-              to="/contact"
               className={`hover:text-blue-500 text-xl my-4 md:my-0 md:mx-2 ${
                 darkMode ? "text-gray-300" : "text-black-500"
               }`}
