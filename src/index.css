@@ -39,9 +39,45 @@
   font-style: normal;
 }
 
-/* h1 { 
- font-family: 'SMITUK';
-}   */
+/* Light theme variables */
+:root {
+  --background-color: #ffffff; /* white */
+  --text-color: #000000; /* black */
+  --header-bg-color: #f0f0f0; /* light gray */
+  --primary-text-color: #333333; /* dark gray */
+  --secondary-text-color: #555555; /* medium gray */
+  /* other color variables */
+}
+
+/* Dark theme variables */
+.dark {
+  --background-color: #121212; /* dark gray */
+  --text-color: #ffffff; /* white */
+  --header-bg-color: #1a1a1a; /* darker gray */
+  --primary-text-color: #cccccc; /* light gray */
+  --secondary-text-color: #aaaaaa; /* medium light gray */
+  /* other color variables for dark theme */
+}
+
+/* Use CSS variables throughout your styles */
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+header {
+  background-color: var(--header-bg-color);
+}
+
+/* Specific styles for LandingPage */
+#Home {
+  /* Add other styles as needed */
+}
+
+.About {
+  color: var(--primary-text-color);
+  /* Add other styles as needed */
+}
 
 nav {
   font-family: "Frensya";
@@ -187,7 +223,7 @@ span {
   animation: blink-cursor 1s step-end infinite;
 }
 .stats-container div {
-  background: white; /* Use a flat background instead of a border */
+  /* Use a flat background instead of a border */
   padding: 2rem; /* Even padding for a cleaner look */
   text-align: center; /* Center the text for a balanced appearance */
 }
@@ -203,3 +239,33 @@ span {
 }
 
 /* Optional: you might want to include a small script for a typing effect in the command-line section */
+/* Toggle button styles */
+.theme-toggle-button {
+  position: relative;
+  width: 50px; /* Width of the button */
+  height: 24px; /* Height of the button */
+  border-radius: 9999px; /* Make it pill-shaped */
+  background-color: #f7f7f7; /* Light mode background */
+  transition: background-color 0.25s; /* Smooth transition for background color */
+}
+
+.theme-toggle-button::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.25s; /* Smooth transition for sliding effect */
+}
+
+.theme-toggle-button.dark-mode {
+  background-color: #353535; /* Dark mode background */
+}
+
+.theme-toggle-button.dark-mode::after {
+  transform: translateX(26px); /* Slide to the right for dark mode */
+}

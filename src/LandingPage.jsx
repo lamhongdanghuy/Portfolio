@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 // ...
 
-function LandingPage() {
+function LandingPage({ darkMode }) {
   return (
     <>
       <div id="Home">
@@ -13,7 +13,7 @@ function LandingPage() {
                 Hi there, my name is Huy Lam.
               </h1>
               <h2 className="text-xl mt-4 text-center md:text-right">
-                Welcome to my portfolio
+                Welcome to my portfolio!
               </h2>
             </div>
           </div>
@@ -22,11 +22,15 @@ function LandingPage() {
       </div>
       <div
         id="About"
-        className="About bg-blue-50 p-10 rounded-lg shadow-lg flex flex-col md:flex-row"
+        className="About p-10 rounded-lg shadow-lg flex flex-col md:flex-row"
       >
         <div className="flex-grow">
           <div className="flex p-1 items-center">
-            <div className="text-lg leading-relaxed text-gray-800 ml-4">
+            <div
+              className={`text-lg leading-relaxed ml-4 ${
+                darkMode ? "text-gray-300" : "text-white-800"
+              }`}
+            >
               <p className="mb-4">
                 My name is Huy Lam, a recent graduate with a Bachelor of Science
                 in Computer Science from DePaul University, specializing in
@@ -57,15 +61,28 @@ function LandingPage() {
             </div>
           </div>
           <div className="stats-container grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-            <div className="border border-gray-300 p-4 rounded-lg">
+            <div
+              className={`border border-gray-300 p-4 rounded-lg ${
+                darkMode ? "bg-white text-gray-300" : "bg-gray-700 text-white"
+              }`}
+            >
               <p className="mb-2">Project Completed:</p>
               <p className="text-xl font-bold">3</p>
             </div>
-            <div className="border border-gray-300 p-4 rounded-lg">
+
+            <div
+              className={`border border-gray-300 p-4 rounded-lg ${
+                darkMode ? "bg-white text-gray-300" : "bg-gray-700 text-white"
+              }`}
+            >
               <p className="mb-2">Year of Experience:</p>
               <p className="text-xl font-bold">0 (soon to be graduated)</p>
             </div>
-            <div className="border border-gray-300 p-4 rounded-lg">
+            <div
+              className={`border border-gray-300 p-4 rounded-lg ${
+                darkMode ? "bg-white text-gray-300" : "bg-gray-700 text-white"
+              }`}
+            >
               <p className="mb-2">Technology:</p>
               <p className="text-xl font-bold">
                 Javascript, SQL, MySQL, React.js, Jira, MariaDB, Nodejs, Python,

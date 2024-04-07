@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import useAnimatedText from "./useAnimatedText";
+import { SunIcon, MoonIcon } from "@heroicons/react/solid";
 
-function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+function Header({ toggleDarkMode, darkMode, isMenuOpen, setIsMenuOpen }) {
   const animatedText = useAnimatedText(
     [
       "Software Engineer",
@@ -43,18 +43,46 @@ function Header() {
   );
 
   return (
-    <header className="w-full bg-gray-100 shadow">
+    <header
+      className={`w-full ${darkMode ? "bg-gray-800" : "bg-gray-100"} shadow 
+      }`}
+    >
       <div className="mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="flex justify-between items-center py-7">
           {/* Flex container for name and animated text */}
           <div className="flex-initial flex flex-col items-center w-full md:w-1/3">
-            <h1 className="text-5xl font-bold leading-none text-gray-900">
+            <h1
+              className={`text-5xl font-bold leading-none ${
+                darkMode ? "text-white" : "text-gray-900"
+              }`}
+            >
               Huy Lam
             </h1>
-            <span className="text-2xl text-blue-500 mt-1 min-h-[32px]">
+            <span
+              className={`text-2xl ${
+                darkMode ? "text-gray-300" : "text-blue-500"
+              } mt-1 min-h-[32px]`}
+            >
               {animatedText}
             </span>
           </div>
+          {/* Toggle button for dark mode */}
+          <button
+            onClick={toggleDarkMode}
+            className="relative p-2 rounded-full w-12 h-6 flex items-center bg-gray-200"
+          >
+            <div
+              className={`transform transition-transform ${
+                darkMode ? "translate-x-6" : "-translate-x-0"
+              }`}
+            >
+              {darkMode ? (
+                <MoonIcon className="h-5 w-5 text-gray-800" />
+              ) : (
+                <SunIcon className="h-5 w-5 text-yellow-500" />
+              )}
+            </div>
+          </button>
           {/* Burger icon for mobile view */}
           <div className="md:hidden">
             <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -63,11 +91,7 @@ function Header() {
           </div>
           {/* Navigation Links */}
           <nav
-            className={`${
-              isMenuOpen
-                ? "fixed inset-0 h-screen w-full z-50 flex flex-col items-center justify-center bg-gray-100"
-                : "hidden"
-            } md:relative md:flex md:items-center md:justify-end md:bg-transparent md:space-x-4 lg:space-x-20 text-xl transition-transform duration-300 ease-in-out`}
+            className={`hidden md:relative md:flex md:items-center md:justify-end md:bg-transparent md:space-x-4 lg:space-x-20 text-xl transition-transform duration-300 ease-in-out`}
           >
             <button
               onClick={() => setIsMenuOpen(false)}
@@ -77,26 +101,46 @@ function Header() {
             </button>
             {/* NavLink components here */}
             <NavLink
-              to="/"
-              className="text-gray-800 hover:text-blue-500 text-xl my-4 md:my-0 md:mx-2"
+              className={`hover:text-blue-500 text-xl my-4 md:my-0 md:mx-2 ${
+                darkMode ? "text-gray-300" : "text-black-500"
+              }`}
+              onClick={(e) => {
+                e.preventDefault(); // Prevent the default anchor link behavior
+                const aboutSection = document.getElementById("Home");
+                if (aboutSection) {
+                  aboutSection.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
             >
               Home
             </NavLink>
             <NavLink
-              to="/#about"
-              className="text-gray-800 hover:text-blue-500 text-xl my-4 md:my-0 md:mx-2"
+              className={`hover:text-blue-500 text-xl my-4 md:my-0 md:mx-2 ${
+                darkMode ? "text-gray-300" : "text-black-500"
+              }`}
+              onClick={(e) => {
+                e.preventDefault(); // Prevent the default anchor link behavior
+                const aboutSection = document.getElementById("About");
+                if (aboutSection) {
+                  aboutSection.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
             >
               About
             </NavLink>{" "}
             <NavLink
               to="/projects"
-              className="text-gray-800 hover:text-blue-500 text-xl my-4 md:my-0 md:mx-2"
+              className={`hover:text-blue-500 text-xl my-4 md:my-0 md:mx-2 ${
+                darkMode ? "text-gray-300" : "text-black-500"
+              }`}
             >
               Projects
             </NavLink>
             <NavLink
               to="/contact"
-              className="text-gray-800 hover:text-blue-500 text-xl my-4 md:my-0 md:mx-2"
+              className={`hover:text-blue-500 text-xl my-4 md:my-0 md:mx-2 ${
+                darkMode ? "text-gray-300" : "text-black-500"
+              }`}
             >
               Contact
             </NavLink>
