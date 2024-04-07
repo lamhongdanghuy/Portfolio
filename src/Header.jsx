@@ -141,6 +141,13 @@ function Header({ toggleDarkMode, darkMode, isMenuOpen, setIsMenuOpen }) {
               className={`hover:text-blue-500 text-xl my-4 md:my-0 md:mx-2 ${
                 darkMode ? "text-gray-300" : "text-black-500"
               }`}
+              onClick={(e) => {
+                e.preventDefault(); // Prevent the default anchor link behavior
+                const aboutSection = document.getElementById("Contact");
+                if (aboutSection) {
+                  aboutSection.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
             >
               Contact
             </NavLink>
