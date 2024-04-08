@@ -9,42 +9,6 @@ function LandingPage({ darkMode }) {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
 
-  // const aboutRef = useRef(null);
-
-  // useEffect(() => {
-  //   const observer = new IntersectionObserver(
-  //     (entries) => {
-  //       entries.forEach((entry) => {
-  //         // Check if the observed entry is intersecting
-  //         if (entry.isIntersecting) {
-  //           // Add animation class if the element is in the viewport
-  //           entry.target.classList.add("animate-fadein");
-  //         } else {
-  //           // Optional: Remove animation class if you want the animation to trigger every time the section comes into view
-  //           entry.target.classList.remove("animate-fadein");
-  //         }
-  //       });
-  //     },
-  //     {
-  //       // Adjust the root margin and threshold according to your needs
-  //       rootMargin: "0px",
-  //       threshold: 0.1, // Trigger when 10% of the element is in view
-  //     }
-  //   );
-
-  //   // Observing the about section
-  //   if (aboutRef.current) {
-  //     observer.observe(aboutRef.current);
-  //   }
-
-  //   // Cleanup function to unobserve the element
-  //   return () => {
-  //     if (aboutRef.current) {
-  //       observer.unobserve(aboutRef.current);
-  //     }
-  //   };
-  // }, []);
-
   const sendEmail = (e) => {
     e.preventDefault();
     emailjs
@@ -349,24 +313,34 @@ function LandingPage({ darkMode }) {
           </div>
 
           <div className="flex space-between space-x-20 text-center justify-center">
-            <div className="justify-center max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col items-center">
+          <div className="justify-center max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col items-center overflow-hidden">
               <img
-                classname="justify-center rounded-t-lg"
+                className="justify-center rounded-t-lg"
                 src="/fakeamazon.jpeg"
-                alt=""
+                alt="Fake Amazon"
               />
-
               <div className="p-5">
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                   Clone Amazon
                 </h5>
-                <p className=" font-normal text-gray-700 dark:text-gray-400">
+                <p className="font-normal text-gray-700 dark:text-gray-400">
                   Clone Amazon is a ReactJS-based front-end replica of Amazon,
                   featuring a simplified interface with essential shopping
                   functionalities like product listings and search. It's perfect
                   for developers exploring e-commerce site development or for
                   creating a streamlined shopping experience.
                 </p>
+                <div>
+                  <h2 className="font-bold">Technology used:</h2>
+                  <ul className="flex flex-wrap gap-1 justify-center items-center">
+                    <li className="rounded-full border border-sky-100 bg-sky-50 px-2 py-0.5 dark:text-sky-300 dark:border-sky-500/15 dark:bg-sky-500/10">
+                      React
+                    </li>
+                    <li className="rounded-full border border-sky-100 bg-sky-50 px-2 py-0.5 dark:text-sky-300 dark:border-sky-500/15 dark:bg-sky-500/10">
+                      MongoDB
+                    </li>
+                  </ul>
+                </div>
               </div>
               <div className="flex">
                 <a
