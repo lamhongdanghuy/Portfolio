@@ -78,7 +78,7 @@ function LandingPage({ darkMode }) {
       <div
         id="About"
         // ref={aboutRef}
-        className="rounded-lg shadow-lg bg-blue-100 p-8 m-4 transition-colors duration-500 hover:bg-blue-200 animate-fadein"
+        className="rounded-lg shadow-lg  p-8 m-4 transition-colors duration-500  animate-fadein"
       >
         <div>
           <h1 className="standout text-center text-4xl font-bold text-gray-800 my-8 animate-slidein">
